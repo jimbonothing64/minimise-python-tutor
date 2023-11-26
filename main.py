@@ -1,5 +1,22 @@
 from typing import Union
-from fastapi import FastAPI
+from enum import Enum
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from minimizer import minimize
+from urllib import parse
+
+
+PY_TUTOR_BASEURL = "https://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false"
+
+
+class SupportedLangauge(str, Enum):
+    python3 = "python3"
+
+
+class Code(BaseModel):
+    code: str
+    lang: SupportedLangauge
+
 
 app = FastAPI()
 
@@ -9,6 +26,25 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/languages/")
+def get_supported_langauges():
+    return [lang for lang in SupportedLangauge]
+
+
+@app.post("/minimise/")
+def minimise_code(code: Code):
+    if code.lang == SupportedLangauge.python3:
+        minimise_code = minimize(code.code)
+        return {"lang": code.lang, "code": minimise_code}
+
+    raise HTTPException(
+        status_code=400,
+        detail=f"Failed to minmise code. Check code is syntacticly valid {code.lang}",
+    )
+
+
+@app.post("/minimise/link/")
+def minimise_code_and_get_link(code: Code):
+    minimised = minimise_code(code)
+    url = PY_TUTOR_BASEURL + "&" + parse.urlencode({"code": minimised["code"]})
+    return {"lang": minimised["lang"], "code": minimised["code"], "link": url}
