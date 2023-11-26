@@ -1,3 +1,4 @@
+from tokenize import TokenError
 from typing import Union
 from enum import Enum
 from fastapi import FastAPI, HTTPException
@@ -34,12 +35,15 @@ def get_supported_langauges():
 @app.post("/minimise/")
 def minimise_code(code: Code):
     if code.lang == SupportedLangauge.python3:
-        minimise_code = minimize(code.code)
-        return {"lang": code.lang, "code": minimise_code}
+        try:
+            minimise_code = minimize(code.code)
+            return {"lang": code.lang, "code": minimise_code}
+        except TokenError:
+            pass  # Failed to minimise.
 
     raise HTTPException(
         status_code=400,
-        detail=f"Failed to minmise code. Check code is syntacticly valid {code.lang}",
+        detail=f"Failed to minmise code. Check code is syntacticly valid {code.lang.name}",
     )
 
 
