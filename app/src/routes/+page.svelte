@@ -20,7 +20,14 @@
 	const handleLinkCopy = () => {
 		if (!loading && form?.code?.link) {
 			navigator.clipboard.writeText(form.code.link);
-			toast.success('Copied link to clipboard');
+			toast.success('Copied link to clipboard.');
+		}
+	};
+
+	const handleCodeCopy = () => {
+		if (!loading && form?.code?.code) {
+			navigator.clipboard.writeText(form.code.code);
+			toast.success('Copied minimised code to clipboard.');
 		}
 	};
 </script>
@@ -157,6 +164,7 @@
 				id="minimised_code"
 				class="w-full resize-none px-0 font-mono text-gray-900 bg-white border-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 focus:ring-offset-0 focus:ring-0 outline-none"
 				bind:value={form.code.code}
+				on:focus={() => handleCodeCopy()}
 				rows="16"
 				readonly
 				name="code"

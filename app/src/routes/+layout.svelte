@@ -12,8 +12,9 @@
 		<p
 			class="mb-6 px-2 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
 		>
-			Minimise for Python Tutor shortens code and generates a sharable Python Tutor link for long
-			Python3 code.
+			Shorten code and generate a sharable Python Tutor link for long Python3 code. Are your code
+			examples too long for Python Tutor? We minimise your code by removing comments, docscrings,
+			extra spaces and replacing spaces with tabs. Paste your code below and click generate.
 		</p>
 	</section>
 	<slot />
