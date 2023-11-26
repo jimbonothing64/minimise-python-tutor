@@ -2,6 +2,7 @@ from tokenize import TokenError
 from typing import Union
 from enum import Enum
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from minimizer import minimize
 from urllib import parse
@@ -20,12 +21,15 @@ class Code(BaseModel):
     lang: SupportedLangauge
 
 
-app = FastAPI()
+app = FastAPI(
+    title="Minimise for Python Tutor API",
+    summary="Minimise for Python Tutor shortens code and generates a sharable Python Tutor link for long Python3 code.",
+)
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get("/", include_in_schema=False)
+async def docs_redirect():
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/languages/")
