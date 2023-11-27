@@ -41,7 +41,9 @@ def get_supported_langauges():
 def minimise_code(code: Code):
     if code.lang == SupportedLangauge.python3:
         try:
-            minimise_code = minimize(code.code)
+            minimise_code = minimize(
+                code.code, indent_char="    "
+            )  # Python tutor replaces tabs with spaces.
             return {"lang": code.lang, "code": minimise_code}
         except TokenError:
             pass  # Failed to minimise.
