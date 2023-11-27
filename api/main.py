@@ -16,9 +16,16 @@ class SupportedLangauge(str, Enum):
     python3 = "python3"
 
 
+class Indentation(str, Enum):
+    aggressive = "  "
+    normal = "    "
+    tab = "\t"
+
+
 class Code(BaseModel):
     code: str
     lang: SupportedLangauge
+    indentation: Indentation
 
 
 app = FastAPI(
@@ -42,7 +49,7 @@ def minimise_code(code: Code):
     if code.lang == SupportedLangauge.python3:
         try:
             minimise_code = minimize(
-                code.code, indent_char="    "
+                code.code, indent_char=code.indentation
             )  # Python tutor replaces tabs with spaces.
             return {"lang": code.lang, "code": minimise_code}
         except TokenError:
