@@ -2,9 +2,14 @@
 	import type { ActionData, SubmitFunction } from './$types';
 	import { enhance } from '$app/forms';
 	import toast, { Toaster } from 'svelte-french-toast';
+
 	export let form: ActionData;
+
 	let code = '';
 	let loading = false;
+
+	$: codeLengthURL = getURLEncodedByteCount(code);
+	$: minimisedCodeLengthURL = getURLEncodedByteCount(form?.code?.code || '');
 
 	const submitCode: SubmitFunction = ({ formElement, formData, action, cancel, submitter }) => {
 		loading = true;
@@ -30,6 +35,24 @@
 			toast.success('Copied minimised code to clipboard.');
 		}
 	};
+
+	const getURLEncodedByteCount = (str: string) => {
+		const params = {
+			code: str,
+			cumulative: 'false',
+			heapPrimitives: 'nevernest',
+			mode: 'edit',
+			origin: 'opt-frontend.js',
+			py: '311',
+			rawInputLstJSON: '[]',
+			textReferences: 'false'
+		};
+		const encode = (k: string, v: string) => encodeURIComponent(k) + '=' + encodeURIComponent(v);
+		const url = Object.entries(params)
+			.map((el) => encode(...el))
+			.join('&');
+		return url.length;
+	};
 </script>
 
 <Toaster />
@@ -53,7 +76,8 @@
 					required
 				></textarea>
 			</div>
-			<div class="flex items-center justify-end px-3 py-2 border-t dark:border-gray-600">
+			<div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+				<p>Length: {codeLengthURL}/5600</p>
 				{#if !loading}
 					<button
 						type="submit"
@@ -171,6 +195,7 @@
 				placeholder="Your python code..."
 				required
 			></textarea>
+			<p>Length: {minimisedCodeLengthURL}/5600</p>
 		</div>
 	{/if}
 </section>
