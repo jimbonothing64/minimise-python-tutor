@@ -36,6 +36,11 @@
 		}
 	};
 
+	/**
+	 * Get the length like Python Tutor does.
+	 * The current max length is 5600 including other params.
+	 * @param str code to get length of.
+	 */
 	const getURLEncodedByteCount = (str: string) => {
 		const params = {
 			code: str,
@@ -77,7 +82,7 @@
 				></textarea>
 			</div>
 			<div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-				<p>Length: {codeLengthURL}/5600</p>
+				<p>{codeLengthURL}/5600</p>
 				{#if !loading}
 					<button
 						type="submit"
@@ -183,7 +188,6 @@
 					</svg></a
 				>
 			</div>
-
 			<textarea
 				id="minimised_code"
 				class="w-full resize-none px-0 font-mono text-gray-900 bg-white border-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 focus:ring-offset-0 focus:ring-0 outline-none"
@@ -195,7 +199,7 @@
 				placeholder="Your python code..."
 				required
 			></textarea>
-			<p>Length: {minimisedCodeLengthURL}/5600</p>
+			<p>{minimisedCodeLengthURL}/5600</p>
 		</div>
 	{/if}
 </section>
