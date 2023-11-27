@@ -17,8 +17,8 @@ class SupportedLangauge(str, Enum):
 
 
 class Indentation(str, Enum):
-    aggressive = "  "
     normal = "    "
+    aggressive = "  "
     tab = "\t"
 
 

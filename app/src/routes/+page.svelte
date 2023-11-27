@@ -82,6 +82,10 @@
 				></textarea>
 			</div>
 			<div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+				<div class="flex flex-row gap-1">
+					<input id="agressive_checkbox" name="agressive" type="checkbox" />
+					<label for="agressive_checkbox">Tiny Indent</label>
+				</div>
 				<p>{codeLengthURL}/5600</p>
 				{#if !loading}
 					<button
@@ -129,7 +133,8 @@
 							/>
 						</svg>
 						Generating...
-					</button>{/if}
+					</button>
+				{/if}
 			</div>
 		</div>
 	</form>

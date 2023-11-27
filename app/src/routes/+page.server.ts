@@ -5,7 +5,12 @@ import { fail } from '@sveltejs/kit';
 
 export const actions = {
 	minimise: async ({ request }) => {
-		const code = codeFormSchema.parse(await request.formData());
+		const { agressive, ...rest } = codeFormSchema.parse(await request.formData());
+		const indentation = agressive ? '  ' : '    ';
+		const code = {
+			indentation,
+			...rest
+		};
 		const res = await fetch(API_URL + 'minimise/link/', {
 			headers: {
 				'Content-Type': 'application/json'
