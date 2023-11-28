@@ -12,9 +12,9 @@
 		<p
 			class="mb-6 px-2 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
 		>
-			Are your code examples too long for Python Tutor? Shorten code and generate a sharable Python
-			Tutor link for long Python3 code. We minimise your code by removing comments, docscrings and
-			extra spaces. Paste your code below and click get link.
+			Shorten code and generate a sharable Python Tutor link for long Python3 code. We minimise your
+			code by removing comments, docscrings and extra spaces. Paste your code below and click get
+			link.
 		</p>
 	</section>
 	<slot />

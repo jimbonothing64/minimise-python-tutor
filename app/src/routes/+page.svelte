@@ -8,6 +8,7 @@
 
 	let code = '';
 	let loading = false;
+	let originalCodeLengthURL = 0;
 
 	$: codeLengthURL = getURLEncodedByteCount(code);
 	$: minimisedCodeLengthURL = getURLEncodedByteCount(form?.code?.code || '');
@@ -16,6 +17,7 @@
 		loading = true;
 		return async ({ result, update }) => {
 			loading = false;
+			originalCodeLengthURL = codeLengthURL;
 			if (result.type !== 'success') {
 				toast.error('Minimisation unsuccessful. Check you are entering valid Python 3.');
 			}
@@ -164,9 +166,14 @@
 		>
 			<h3 class="text-2xl font-bold leading-none">Minimised code</h3>
 			<p>
-				Your code was reduced by {codeLengthURL - minimisedCodeLengthURL} url encoded bytes. Minimised,
-				it uses
+				Your code was reduced by {originalCodeLengthURL - minimisedCodeLengthURL} url encoded bytes.
+				Minimised, it uses
 				{minimisedCodeLengthURL} bytes out of 5600 bytes.
+			</p>
+			<p>
+				{#if minimisedCodeLengthURL > 5600}
+					Your minimised code is too long for Python Tutor! Try using tiny indent.
+				{/if}
 			</p>
 			<div class="flex flex-row gap-1.5">
 				<input
