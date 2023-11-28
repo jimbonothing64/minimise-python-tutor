@@ -5,8 +5,8 @@ import { fail } from '@sveltejs/kit';
 
 export const actions = {
 	minimise: async ({ request }) => {
-		const { agressive, ...rest } = codeFormSchema.parse(await request.formData());
-		const indentation = agressive ? '  ' : '    ';
+		const { tinyIndent, ...rest } = codeFormSchema.parse(await request.formData());
+		const indentation = tinyIndent ? ' ' : '    ';
 		const code = {
 			indentation,
 			...rest

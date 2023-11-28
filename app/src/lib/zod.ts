@@ -8,5 +8,5 @@ export const codeResSchema = z.object({ code: z.string(), lang: z.string(), link
 export const codeFormSchema = zfd.formData({
 	code: z.string(),
 	lang: z.string(),
-	agressive: zfd.checkbox()
+	tinyIndent: zfd.checkbox()
 });
