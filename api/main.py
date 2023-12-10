@@ -6,7 +6,6 @@ from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from minimizer import minimize
 from urllib import parse
-from fastapi.middleware.cors import CORSMiddleware
 
 
 PY_TUTOR_BASEURL = "https://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false"
