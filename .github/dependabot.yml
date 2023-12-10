@@ -5,9 +5,11 @@ updates:
     directory: "/app"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 999
 
   # Enable version updates for api
   - package-ecosystem: "pip"
     directory: "/api"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 999
