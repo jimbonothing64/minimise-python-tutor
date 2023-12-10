@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Enable version updates for app
+  - package-ecosystem: "pnpm"
+    directory: "/app"
+    schedule:
+      interval: "daily"
+
+  # Enable version updates for api
+  - package-ecosystem: "pip"
+    directory: "/api"
+    schedule:
+      interval: "daily"
