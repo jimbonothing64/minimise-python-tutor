@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+const BASE_URL = process.env.PLAYWRIGHT_TEST_BASE_URL || 'http://localhost:5173/';
+
 test('test page load', async ({ page }) => {
-	await page.goto('http://localhost:5173/');
+	await page.goto(BASE_URL);
 	await expect(page.getByRole('heading', { name: '🐜 Minimise for Python Tutor' })).toBeVisible();
 	await expect(page.getByText('/5600')).toBeVisible();
 });
 
 test('test minimise', async ({ page }) => {
-	await page.goto('http://localhost:5173/');
+	await page.goto(BASE_URL);
 	await page.getByPlaceholder('Your python code...').click();
 	await page
 		.getByPlaceholder('Your python code...')
@@ -28,7 +30,7 @@ test('test minimise', async ({ page }) => {
 });
 
 test('test minimise tiny', async ({ page }) => {
-	await page.goto('http://localhost:5173/');
+	await page.goto(BASE_URL);
 	await page.getByPlaceholder('Your python code...').click();
 	await page
 		.getByPlaceholder('Your python code...')
