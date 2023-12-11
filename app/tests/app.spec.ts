@@ -16,27 +16,35 @@ test('test minimise', async ({ page }) => {
 		);
 	await page.getByRole('button', { name: 'Get link' }).click();
 	await expect(page.getByRole('heading', { name: 'Minimised code' })).toBeVisible();
-	await page.getByText('Your code was reduced by 98').click();
+	await expect(page.getByText('Your code was reduced by 98')).toBeVisible();
 	await page.locator('#link').click();
-	await expect(page.locator('#link')).toBeVisible();
 	await page.getByRole('button', { name: 'Show Code' }).click();
-	await page.getByRole('textbox', { name: 'Your python code...' }).click();
+	await expect(page.locator('#link')).toHaveValue(
+		`https://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false&code=def+main%28%29%3A%0A++++print%28%22hi%22%2B%22bye%22%29%0Amain%28%29`
+	);
+	await expect(page.locator('#minimised_code')).toHaveValue(
+		`def main():\n    print("hi"+"bye")\nmain()`
+	);
 });
 
-// test('test minimise tiny', async ({ page }) => {
-// 	await page.goto('http://localhost:5173/');
-// 	await page.getByPlaceholder('Your python code...').click();
-// 	await page
-// 		.getByPlaceholder('Your python code...')
-// 		.fill(
-// 			'"""Hello world"""\n\n\ndef main():\n    """Hello world"""\n    print("hi" + "bye")\n\n\nmain()'
-// 		);
-// 	await page.getByLabel('Tiny Indent').check();
-// 	await page.getByRole('button', { name: 'Get link' }).click();
-// 	await expect(page.getByRole('heading', { name: 'Minimised code' })).toBeVisible();
-// 	await page.getByText('Your code was reduced by 98').click();
-// 	await page.locator('#link').click();
-// 	await expect(page.locator('#link')).toBeVisible();
-// 	await page.getByRole('button', { name: 'Show Code' }).click();
-// 	await page.getByRole('textbox', { name: 'Your python code...' }).click();
-// });
+test('test minimise tiny', async ({ page }) => {
+	await page.goto('http://localhost:5173/');
+	await page.getByPlaceholder('Your python code...').click();
+	await page
+		.getByPlaceholder('Your python code...')
+		.fill(
+			'"""Hello world"""\n\n\ndef main():\n    """Hello world"""\n    print("hi" + "bye")\n\n\nmain()'
+		);
+	await page.getByLabel('Tiny Indent').check();
+	await page.getByRole('button', { name: 'Get link' }).click();
+	await expect(page.getByRole('heading', { name: 'Minimised code' })).toBeVisible();
+	await expect(page.getByText('Your code was reduced by 107')).toBeVisible();
+	await page.locator('#link').click();
+	await page.getByRole('button', { name: 'Show Code' }).click();
+	await expect(page.locator('#link')).toHaveValue(
+		`https://pythontutor.com/visualize.html#cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false&code=def+main%28%29%3A%0A+print%28%22hi%22%2B%22bye%22%29%0Amain%28%29`
+	);
+	await expect(page.locator('#minimised_code')).toHaveValue(
+		`def main():\n print("hi"+"bye")\nmain()`
+	);
+});
