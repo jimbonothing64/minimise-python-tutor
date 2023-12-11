@@ -5,8 +5,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    run:
-      working-directory: ./app
+    defaults:
+      run:
+        working-directory: ./app
     if: github.event.deployment_status.state == 'success'
     steps:
       - uses: actions/checkout@v3
