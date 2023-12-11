@@ -44,7 +44,7 @@ def test_minimise_code():
 
 def test_minimise_code_and_get_link():
     response = client.post(
-        url="/minimise/",
+        url="/minimise/link/",
         json={"code": SMALL_PROGRAM, "lang": "python3", "indentation": "    "},
     )
     assert response.status_code == 200
@@ -55,7 +55,7 @@ def test_minimise_code_and_get_link():
     }
 
     response = client.post(
-        url="/minimise/",
+        url="/minimise/link/",
         json={
             "code": SMALL_PROGRAM,
             "lang": "python3",
