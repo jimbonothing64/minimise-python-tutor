@@ -1,14 +1,36 @@
-name: Playwright Tests Deployment
+name: Playwright Tests
 on:
-  deployment_status:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 jobs:
-  test:
-    timeout-minutes: 60
+  build:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./app
-    if: github.event.deployment_status.state == 'success'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build Sveltekit
+        run: pnpm run build
+      - name: Run preview build
+        run: pnpm run preview
+  test:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -24,4 +46,4 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:4173/
