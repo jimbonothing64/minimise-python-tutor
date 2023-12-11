@@ -27,8 +27,10 @@ jobs:
         run: pnpm run build
         env:
           API_URL: https://minimise-python-tutor-usb1.vercel.app/
-      - name: Run preview build
-        run: pnpm run preview
+      - name: Start Sveltekit server
+        run: pnpm run preview &
+      - name: Wait for Sveltekit to start
+        run: sleep 10
       - name: Run Playwright tests
         run: npx playwright test
         env:
