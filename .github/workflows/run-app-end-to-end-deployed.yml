@@ -5,7 +5,30 @@ on:
   pull_request:
     branches: [main, master]
 jobs:
-  test:
+  start_api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    strategy:
+      matrix:
+        python-version: [3.12]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run FastApi
+        run: uvicorn main:app
+  test_e2e:
+    needs: start_api
     timeout-minutes: 10
     runs-on: ubuntu-latest
     defaults:
@@ -26,7 +49,7 @@ jobs:
       - name: Build Sveltekit
         run: pnpm run build
         env:
-          API_URL: https://minimise-python-tutor-usb1.vercel.app/
+          API_URL: http://localhost:8000/
       - name: Start Sveltekit server
         run: pnpm run preview &
       - name: Wait for Sveltekit to start
