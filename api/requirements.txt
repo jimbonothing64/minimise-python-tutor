@@ -21,7 +21,7 @@ pydantic==2.6.3
 pydantic-extra-types==2.5.0
 pydantic-settings==2.2.1
 pydantic_core==2.16.3
-pytest==8.0.2
+pytest==8.1.0
 python-dotenv==1.0.1
 python-minimizer==2.0.1
 python-multipart==0.0.9
