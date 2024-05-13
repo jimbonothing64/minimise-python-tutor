@@ -40,7 +40,7 @@
     "flowbite-svelte": "^0.46.1",
     "svelte-french-toast": "^1.2.0",
     "tailwind-merge": "^2.3.0",
-    "zod": "^3.23.6",
+    "zod": "^3.23.8",
     "zod-form-data": "^2.0.2"
   }
 }
