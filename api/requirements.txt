@@ -20,7 +20,7 @@ pluggy==1.5.0
 pydantic==2.7.4
 pydantic-extra-types==2.10.3
 pydantic-settings==2.8.1
-pydantic_core==2.18.4
+pydantic_core==2.33.0
 pytest==8.3.5
 python-dotenv==1.0.1
 python-minimizer==2.0.1
