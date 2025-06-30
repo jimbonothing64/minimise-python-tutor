@@ -24,8 +24,8 @@ dependencies:
     specifier: ^3.25.67
     version: 3.25.67
   zod-form-data:
-    specifier: ^2.0.2
-    version: 2.0.2(zod@3.25.67)
+    specifier: ^3.0.0
+    version: 3.0.0(zod@3.25.67)
 
 devDependencies:
   '@playwright/test':
@@ -520,6 +520,10 @@ packages:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 4.0.2
+    dev: false
+
+  /@rvf/set-get@7.0.1:
+    resolution: {integrity: sha512-GkTSn9K1GrTYoTUqlUs36k6nJnzjQaFBTTEIqUYmzBcsGsoJM8xG7EAx2WLHWAA4QzFjcwWUSHQ3vM3Fbw50Tg==}
     dev: false
 
   /@sveltejs/adapter-auto@2.1.1(@sveltejs/kit@1.30.4):
@@ -2957,11 +2961,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod-form-data@2.0.2(zod@3.25.67):
-    resolution: {integrity: sha512-sKTi+k0fvkxdakD0V5rq+9WVJA3cuTQUfEmNqvHrTzPLvjfLmkkBLfR0ed3qOi9MScJXTHIDH/jUNnEJ3CBX4g==}
+  /zod-form-data@3.0.0(zod@3.25.67):
+    resolution: {integrity: sha512-jTQbmXQU5wMfI+ERZH6EuATzeD9FEOviPasLL2hCUP+FcLagXLtboUM95PHsSOFseL8Nv91YKlwln3zo1sAS2g==}
     peerDependencies:
-      zod: '>= 3.11.0'
+      zod: '>= 3.25.0'
     dependencies:
+      '@rvf/set-get': 7.0.1
       zod: 3.25.67
     dev: false
 
