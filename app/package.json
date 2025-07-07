@@ -41,6 +41,6 @@
     "svelte-french-toast": "^1.2.0",
     "tailwind-merge": "^2.5.5",
     "zod": "^3.25.67",
-    "zod-form-data": "^2.0.2"
+    "zod-form-data": "^3.0.0"
   }
 }
