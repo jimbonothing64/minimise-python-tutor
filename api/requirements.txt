@@ -4,7 +4,7 @@ certifi==2024.12.14
 click==8.1.8
 dnspython==2.7.0
 email-validator==2.3.0
-fastapi==0.115.2
+fastapi==0.121.1
 h11==0.14.0
 httpcore==1.0.8
 httptools==0.7.1
