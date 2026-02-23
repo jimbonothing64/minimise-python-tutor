@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0(svelte@4.2.18)
   tailwind-merge:
-    specifier: ^2.5.5
-    version: 2.5.5
+    specifier: ^3.5.0
+    version: 3.5.0
   zod:
     specifier: ^3.25.75
     version: 3.25.75
@@ -1458,7 +1458,7 @@ packages:
       apexcharts: 3.54.1
       flowbite: 2.5.2
       svelte: 4.2.18
-      tailwind-merge: 2.5.5
+      tailwind-merge: 2.6.1
     transitivePeerDependencies:
       - rollup
     dev: false
@@ -2689,8 +2689,12 @@ packages:
       svg.js: 2.7.1
     dev: false
 
-  /tailwind-merge@2.5.5:
-    resolution: {integrity: sha512-0LXunzzAZzo0tEPxV3I297ffKZPlKDrjj7NXphC8V5ak9yHC5zRmxnOe2m/Rd/7ivsOMJe3JZ2JVocoDdQTRBA==}
+  /tailwind-merge@2.6.1:
+    resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
+    dev: false
+
+  /tailwind-merge@3.5.0:
+    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
     dev: false
 
   /tailwindcss@3.4.15:
